@@ -10,9 +10,7 @@ name: ci_cd_pipeline_develop.yml
 #        default: 'develop'
 on:
   push:
-    branches:
-      - develop
-
+    branches: [develop]
 
 jobs:
   develop:
