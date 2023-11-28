@@ -4,7 +4,7 @@ name: ci_cd_pipeline_develop.yml
 on:
   push:
     branches:
-      - main
+      - develop
 
 
 jobs:
