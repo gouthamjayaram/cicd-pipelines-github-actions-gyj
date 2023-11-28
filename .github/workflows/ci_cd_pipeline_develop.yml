@@ -1,16 +1,17 @@
 name: ci_cd_pipeline_develop.yml
 
 # Run on a new push to develop branch
-on:
+#on:
 #  workflow_dispatch:
 #    inputs:
 #      releaseType:
 #        description: 'Where to release (staging or prod)?'     
 #        required: true
 #        default: 'develop'
-	push:
-		branches:
-			- develop
+on:
+  push:
+    branches:
+      - develop
 
 
 jobs:
