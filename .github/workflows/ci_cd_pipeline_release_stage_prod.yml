@@ -21,27 +21,27 @@ jobs:
   staging:
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      CLOUDHUB_ENVIRONMENT: "uat-01"
-      GITHUB_ENVIRONMENT: "staging"      
-      CLOUDHUB_WORKERS: "1"
-      CLOUDHUB_WORKER_TYPE: "MICRO"
-      CLOUDHUB_REGION: "ca-central-1"
-      HTTP_PRIVATE_PORT: "8091"
+      ANYPOINT_ENVIRONMENT: "Stage"
+      GITHUB_ENVIRONMENT: "Stage"      
+      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
+      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-STG-CLUSTER"
+      ANYPOINT_TARGET_TYPE: "cluster"
     secrets:
-      CLOUDHUB_USERNAME: ${{ secrets.CLOUDHUB_USERNAME }}       
-      CLOUDHUB_PASSWORD : ${{ secrets.CLOUDHUB_PASSWORD }}
+      ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
+      ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+      ANYPOINT_CLIENT_ID_SECRET: ${{ secrets.ANYPOINT_CLIENT_ID_SECRET }}
 
   prod:
     if: github.event.inputs.releaseType == 'prod'  
     needs: [staging]
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      CLOUDHUB_ENVIRONMENT: "prod-01"
-      GITHUB_ENVIRONMENT: "prod"      
-      CLOUDHUB_WORKERS: "1"
-      CLOUDHUB_WORKER_TYPE: "MICRO"
-      CLOUDHUB_REGION: "ca-central-1"
-      HTTP_PRIVATE_PORT: "8091"
+      ANYPOINT_ENVIRONMENT: "Prod"
+      GITHUB_ENVIRONMENT: "Prod"      
+      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
+      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-PROD-CLUSTER"
+      ANYPOINT_TARGET_TYPE: "cluster"
     secrets:
-      CLOUDHUB_USERNAME: ${{ secrets.CLOUDHUB_USERNAME }}        
-      CLOUDHUB_PASSWORD : ${{ secrets.CLOUDHUB_PASSWORD }}
+      ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
+      ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
+      ANYPOINT_CLIENT_ID_SECRET: ${{ secrets.ANYPOINT_CLIENT_ID_SECRET }}
