@@ -3,8 +3,9 @@ name: ci_cd_pipeline_develop.yml
 # Run on a new push to develop branch
 on:
   push:
-  	branches:
-  		- develop
+    branches:
+      - main
+
 
 jobs:
   develop:
