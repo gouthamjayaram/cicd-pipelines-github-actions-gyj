@@ -9,13 +9,14 @@ on:
 
 jobs:
   develop:
+  	environment: Dev
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      ANYPOINT_ENVIRONMENT: "Dev"
+      ANYPOINT_ENVIRONMENT: ${{ vars.ANYPOINT_ENVIRONMENT }}
       GITHUB_ENVIRONMENT: "Dev"      
-      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
-      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-DEV"
-      ANYPOINT_TARGET_TYPE: "server"
+      ANYPOINT_BUSINESSGROUP: ${{ vars.ANYPOINT_BUSINESSGROUP }}
+      ANYPOINT_TARGET_NAME: ${{ vars.ANYPOINT_TARGET_NAME }}
+      ANYPOINT_TARGET_TYPE: ${{ vars.ANYPOINT_TARGET_TYPE }}
     secrets:
       ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
       ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
