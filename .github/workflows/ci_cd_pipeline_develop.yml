@@ -9,7 +9,7 @@ on:
 
 jobs:
   develop:
-  	environment: Dev
+    environment: Dev
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
       ANYPOINT_ENVIRONMENT: ${{ vars.ANYPOINT_ENVIRONMENT }}
