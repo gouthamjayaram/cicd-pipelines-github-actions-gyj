@@ -1,21 +1,20 @@
 name: ci_cd_pipeline_develop.yml
 
 # Run on a new push to develop branch
+
 on:
   push:
-    branches:
-      - develop
-
+    branches: [develop]
 
 jobs:
   develop:
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      ANYPOINT_ENVIRONMENT: ${{ env.ANYPOINT_ENVIRONMENT }}
+      ANYPOINT_ENVIRONMENT: "Dev"
       GITHUB_ENVIRONMENT: "Dev"      
-      ANYPOINT_BUSINESSGROUP: ${{ env.ANYPOINT_BUSINESSGROUP }}
-      ANYPOINT_TARGET_NAME: ${{ env.ANYPOINT_TARGET_NAME }}
-      ANYPOINT_TARGET_TYPE: ${{ env.ANYPOINT_TARGET_TYPE }}
+      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
+      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-DEV"
+      ANYPOINT_TARGET_TYPE: "server"
     secrets:
       ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
       ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
