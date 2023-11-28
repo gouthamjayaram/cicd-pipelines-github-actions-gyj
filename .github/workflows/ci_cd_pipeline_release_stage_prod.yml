@@ -8,14 +8,6 @@ on:
         description: 'Where to release (staging or prod)?'     
         required: true
         default: 'staging'
-env:
-  ## Cloudhub Properties
-  CLOUDHUB_WORKERS: 2
-  CLOUDHUB_WORKER_TYPE: MICRO
-  CLOUDHUB_REGION: us-east-01  
-
-  ## API specific 
-  HTTP_PRIVATE_PORT: 8091  
 
 jobs:
   staging:
