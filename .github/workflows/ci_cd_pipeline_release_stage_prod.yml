@@ -21,11 +21,11 @@ jobs:
   staging:
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      ANYPOINT_ENVIRONMENT: ${{ env.ANYPOINT_ENVIRONMENT }}
+      ANYPOINT_ENVIRONMENT: "Stage"
       GITHUB_ENVIRONMENT: "Stage"      
-      ANYPOINT_BUSINESSGROUP: ${{ env.ANYPOINT_BUSINESSGROUP }}
-      ANYPOINT_TARGET_NAME: ${{ env.ANYPOINT_TARGET_NAME }}
-      ANYPOINT_TARGET_TYPE: ${{ env.ANYPOINT_TARGET_TYPE }}
+      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
+      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-STG-CLUSTER"
+      ANYPOINT_TARGET_TYPE: "cluster"
     secrets:
       ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
       ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
@@ -36,11 +36,11 @@ jobs:
     needs: [staging]
     uses: ./.github/workflows/build_deploy_reusable.yml
     with:
-      ANYPOINT_ENVIRONMENT: ${{ env.ANYPOINT_ENVIRONMENT }}
+      ANYPOINT_ENVIRONMENT: "Prod"
       GITHUB_ENVIRONMENT: "Prod"      
-      ANYPOINT_BUSINESSGROUP: ${{ env.ANYPOINT_BUSINESSGROUP }}
-      ANYPOINT_TARGET_NAME: ${{ env.ANYPOINT_TARGET_NAME }}
-      ANYPOINT_TARGET_TYPE: ${{ env.ANYPOINT_TARGET_TYPE }}
+      ANYPOINT_BUSINESSGROUP: "8d40a60d-8449-4188-94b7-c44d7e310394"
+      ANYPOINT_TARGET_NAME: "MSI-MULESOFT-PROD-CLUSTER"
+      ANYPOINT_TARGET_TYPE: "cluster"
     secrets:
       ANYPOINT_CLIENT_ID: ${{ secrets.ANYPOINT_CLIENT_ID }}       
       ANYPOINT_CLIENT_SECRET : ${{ secrets.ANYPOINT_CLIENT_SECRET }}
