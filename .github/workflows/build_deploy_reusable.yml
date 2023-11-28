@@ -2,28 +2,27 @@ name: build_deploy_reusable.yml
 on:
   workflow_call:
     inputs:
-      CLOUDHUB_ENVIRONMENT:
+      ANYPOINT_ENVIRONMENT:
         required: true
         type: string
       GITHUB_ENVIRONMENT:
         required: true
         type: string                    
-      CLOUDHUB_WORKERS:
+      ANYPOINT_BUSINESSGROUP:
+        required: true
+        type: string  
+      ANYPOINT_TARGET_NAME:
+        required: true
+        type: string 
+      ANYPOINT_TARGET_TYPE:
         required: true
         type: string
-      CLOUDHUB_WORKER_TYPE:
-        required: true
-        type: string                
-      CLOUDHUB_REGION:
-        required: true
-        type: string                
-      HTTP_PRIVATE_PORT:
-        required: true
-        type: string                        
     secrets:
-      CLOUDHUB_USERNAME:
+      ANYPOINT_CLIENT_ID:
         required: true    
-      CLOUDHUB_PASSWORD:
+      ANYPOINT_CLIENT_SECRET:
+        required: true
+      ANYPOINT_CLIENT_ID_SECRET:
         required: true
 jobs:
   build:
@@ -50,7 +49,7 @@ jobs:
 
     - uses: s4u/maven-settings-action@v2.6.0
       with:
-        servers: '[{"id": "mule-connected-app", "username": "${{ inputs.GITHUB_ENVIRONMENT}}", "password": "${{ inputs.GITHUB_ENVIRONMENT }}"}]'
+        servers: '[{"id": "mule-connected-app", "username": "~~~Client~~~", "password": "${{ secrets.ANYPOINT_CLIENT_ID_SECRET }}"}]'
 
     - name: JOB settings DETAILS
       run: |
@@ -100,10 +99,9 @@ jobs:
     - name: Deploy for ${{ github.event.ref }} branch
       run: |
         mvn -U -V -e -B -DskipTests deploy --file pom.xml -DmuleDeploy \
-        -Danypoint.userName=${{ secrets.CLOUDHUB_USERNAME}} \
-        -Danypoint.password=${{ secrets.CLOUDHUB_PASSWORD}} \
-        -Dcloudhub.environment=${{ inputs.CLOUDHUB_ENVIRONMENT}} \
-        -Dcloudhub.workerType=${{ inputs.CLOUDHUB_WORKER_TYPE}} \
-        -Dcloudhub.workers=${{ inputs.CLOUDHUB_WORKERS}} \
-        -Dcloudhub.region=${{ inputs.CLOUDHUB_REGION}} \
-        -Dhttp.private.port=${{ inputs.HTTP_PRIVATE_PORT}} \
+        -Dtarget_server_name=${{ inputs.ANYPOINT_TARGET_NAME}} \
+        -Dtarget_type=${{ inputs.ANYPOINT_TARGET_TYPE}} \
+        -Denvironment=${{ inputs.ANYPOINT_ENVIRONMENT}} \
+        -Dbusinessgroup_id=${{ inputs.ANYPOINT_BUSINESSGROUP}} \
+        -Dclient_id=${{ secrets.ANYPOINT_CLIENT_ID}} \
+        -Dclient_secret=${{ secrets.ANYPOINT_CLIENT_SECRET}} \
